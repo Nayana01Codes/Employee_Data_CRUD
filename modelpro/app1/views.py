@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from .models import Employee
-
+# Changes done 
 # Create your views here.
 def index(request):
     data = Employee.objects.all()

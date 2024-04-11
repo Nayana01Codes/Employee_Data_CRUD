@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <title>Home</title>
+</head>
+<body>
+
+
+    <h1>Employee Management System</h1>
+
+    
+    <a href="{% url 'index' %}"><button class="btn btn-outline-success float-end me-5 mb-3">Show All</button></a>
+
+    <div class="float-end me-3" style="width: 300px;">
+      <form class="d-flex" action="{% url 'search' %}" method="post">
+        {% csrf_token %}
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+
+
+
+    <a href="{% url 'add' %}"><button class="btn btn-primary btn-md float-end me-5 mb-3">Add Employee For Working</button></a>
+
+    <div class='ms-3 mt-3' style="width:600px;">
+      <form action="{% url 'filter_salary' %}">
+        <label for="">Min : </label>
+        <input type="number" name="min" value="0">
+        <br><br>
+        <label for="">Max : </label>
+        <input type="number" name="max" value="0">
+        <br><br>
+        <input type="submit" name="Apply" id="">
+      </form>
+    </div>
+
+
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Sr.No</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Contact</th>
+            <th scope="col">
+              <div class="dropdown">
+                <span class="dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                   Gender
+                </span>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="{% url 'search_male' %}">Male</a></li>
+                  <li><a class="dropdown-item" href="{% url 'search_female' %}">Female</a></li>
+                  <li><a class="dropdown-item" href="{% url 'index' %}">All</a></li>
+                </ul>
+              </div>
+            </th>
+            <th scope="col">
+              <div class="dropdown">
+                <span class="dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                   Department
+                </span>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="{% url 'search_dept' %}?dpt=manager">Manager</a></li>
+                  <li><a class="dropdown-item" href="{% url 'search_dept' %}?dpt=designer">Designer</a></li>
+                  <li><a class="dropdown-item" href="{% url 'search_dept' %}?dpt=administration">Administration</a></li>
+                  <li><a class="dropdown-item" href="{% url 'search_dept' %}?dpt=system_administration">System_Administration</a></li>
+                  <li><a class="dropdown-item" href="{% url 'search_dept' %}?dpt=application_developer">Application_Developer</a></li>
+                  <li><a class="dropdown-item" href="{% url 'search_dept' %}?dpt=security_administration">Security_Administration</a></li>
+                  <li><a class="dropdown-item" href="{% url 'search_dept' %}?dpt=database_administration">Database_Administration</a></li>
+                  <li><a class="dropdown-item" href="{% url 'search_dept' %}?dpt=web_developer">Web_Developer</a></li>
+                  <li><a class="dropdown-item" href="{% url 'search_dept' %}?dpt=helpdesk_supporter">Helpdesk_Supporter</a></li>
+                  <li><a class="dropdown-item" href="{% url 'search_dept' %}?dpt=technical_supporter">technical_Supporter</a></li>
+                  {% comment %} <li><a class="dropdown-item" href="{% url 'search_manager' %}">Manager</a></li>
+                  <li><a class="dropdown-item" href="{% url 'search_designer' %}">Designer</a></li>
+                  <li><a class="dropdown-item" href="{% url 'search_administration' %}">Administration</a></li>
+                  <li><a class="dropdown-item" href="{% url 'search_system_administration' %}">System_Administration</a></li>
+                  <li><a class="dropdown-item" href="{% url 'search_application_developer' %}">Application_Developer</a></li>
+                  <li><a class="dropdown-item" href="{% url 'search_security_administration' %}">Security_Administration</a></li>
+                  <li><a class="dropdown-item" href="{% url 'search_database_administration' %}">Database_Administration</a></li>
+                  <li><a class="dropdown-item" href="{% url 'search_web_developer' %}">Web_Developer</a></li>
+                  <li><a class="dropdown-item" href="{% url 'search_helpdesk_supporter' %}">Helpdesk_Supporter</a></li>
+                  <li><a class="dropdown-item" href="{% url 'search_technical_supporter' %}">Technical_Supporter</a></li> {% endcomment %}
+                  <li><a class="dropdown-item" href="{% url 'index' %}">All</a></li>
+                </ul>
+              </div>
+            </th>
+            <th scope="col">Salary</th>
+            <th scope="col">Update</th>
+            <th scope="col">Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+
+            {% for i in data %}
+
+          <tr>
+            <th scope="row">{{forloop.counter}}</th>
+            <td>{{i.name}}</td>
+            <td>{{i.email}}</td>
+            <td>{{i.contact}}</td>
+            <td>{{i.gender|capfirst}}</td>
+            <td>{{i.dept}}</td>
+            <td>{{i.salary}}</td>
+            <th><a href="update/{{i.email}}"><button class="btn btn-warning btn-sm">Update</button></a></th>
+            <th><a href="delete/{{i.email}}"><button class="btn btn-danger btn-sm">Delete</button></a></th>
+          </tr>
+
+          {% endfor %}
+        </tbody>
+      </table>
+
+
+</body>
+</html>

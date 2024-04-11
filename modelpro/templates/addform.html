@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <title>Details Of Employee</title>
+</head>
+<body>
+
+    <div class="container-fluid bg-info mt-5 p-3 rounded" style="width:50%;">
+        <h1 class="text-center">Add New Employee</h1>
+
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="ms-5 w-50 m-3">
+                Employee Name : <input type="text" name="name">
+            </div>
+
+            <div class="ms-5 w-50 m-3">
+                Employee Email : <input type="email" name="email">
+            </div>
+
+            <div class="ms-5 w-50 m-3">
+                Employee Contact : <input type="number" name="contact">
+            </div>
+            <div class="ms-5 w-50 m-3">
+                Employee Salary : <input type="number" name="salary">
+            </div>
+
+            <div class="ms-5 w-50 m-3">
+                Employee Gender :
+                <select name="gender">
+                    <option value="male">Male</option>
+                    <option value="female">FeMale</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <div class="ms-5 w-50 m-3">
+                Employee Department : 
+                <select name="department" id="">
+                    <option value="manager">Manager</option>
+                    <option value="designer">Designer</option>
+                    <option value="administration">Administration</option>
+                    <option value="system_administration">System_Administration</option>
+                    <option value="application_developer">Application_Developer</option>
+                    <option value="security_administration">Security_Administration</option>
+                    <option value="database_administration">Database_Administration</option>
+                    <option value="web_developer">Web_Developer</option>
+                    <option value="helpdesk_supporter">Helpdesk_Supporter</option>
+                    <option value="technical_supporter">Technical_Supporter</option>
+                </select>
+            </div>
+            
+
+            <div class="ms-5 w-50 m-3">
+                Employee Image : <input type="file" name="image">
+            </div>
+
+            <div class="ms-5 w-75 mt-5">
+                <input type="submit" value="Add" class="btn bg-primary px-5">
+                <input type="reset" value="Reset" class="btn bg-primary px-5 ms-5">
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>
